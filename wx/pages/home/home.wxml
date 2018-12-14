@@ -1,0 +1,28 @@
+<view class='addr'>
+  选择门店
+</view>
+<view class='swiperF'>
+  <swiper  autoplay interval="3500" duration="500" circular indicator-dots indicator-active-color="rgba(48,200,249,.7)" indicator-color="rgba(48,200,249,.3)">
+    <block wx:for="{{imgUrls}}" wx:key="{{item.id}}">
+      <swiper-item>
+        <image src="{{item.url}}" lazy-load scaleToFill/>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view class='garyBox'></view>
+<!-- 商品模块 -->
+<view class='shop-container'>
+  <block wx:for="{{shopList}}" wx:key="{{item.id}}">
+    <view class="shop-item">
+      <image src="{{item.img}}" lazy-load scaleToFill></image>
+      <view class="shop-item-desc">
+        <text class="ell">{{item.desc}}</text>
+        <view class="shop-item-buy">
+          <view><text>￥</text>{{item.price}}</view>
+          <button size="mini">去购买</button>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

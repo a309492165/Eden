@@ -1,0 +1,96 @@
+.content{
+  position: relative;
+  padding-bottom:80rpx; 
+}
+.content>view:nth-child(1){
+  text-align: center;
+}
+/* 商品主体 */
+.pro-wrapper{
+  padding:20rpx 0;
+  margin-left: 20rpx;
+  height: 180rpx;
+  display: flex;
+  justify-content:space-between;
+  border-bottom:1rpx solid #ddd;
+  position: relative;
+}
+.pro-wrapper>view:first-child{
+  margin-top:70rpx;
+}
+.pro-wrapper image{
+  height: 180rpx;
+  width:180rpx;
+}
+.pro-wrapper>view:last-child{
+  width: 62%;
+  height: 180rpx;
+  padding-right:20rpx; 
+}
+.pro-wrapper>view:last-child>text:first-child{
+  width: 90%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: pre-wrap;
+  font-size:15px;
+}
+.pro-wrapper>view:last-child>text:nth-child(2){
+  width: 80%;
+  font-size:12px;
+  display: block;
+  margin-top:10rpx;
+  color: #999;
+  
+}
+.pro-wrapper .pro-count{
+  font-size:14px;
+  display: flex;
+  justify-content: space-between;
+  margin-top:18rpx;
+}
+.pro-count view{
+  color:#f40;
+}
+.pro-count text{
+  font-size:12px;
+}
+.pro-wrapper .delete{
+  position: absolute;
+  top:0;
+  right: 20rpx;
+}
+.pro-wrapper .addCount text{
+  font-size:14px;
+}
+.pro-wrapper .addCount text:nth-child(odd){
+  display:inline-block;
+  width:40rpx;
+   text-align: left;
+}
+.pro-wrapper .addCount text:nth-child(3){
+  text-align: right;
+}
+/* 底部操作栏 */
+.selectAll{
+  position: fixed;
+  bottom:0;
+  z-index: 9;
+  height:80rpx;
+  width: 100%;
+  background-color: #A28B66;
+}
+.selectAll::before{
+  display: table;
+  content:"";
+}
+.selectAll icon{
+  float: left;
+  margin: 20rpx;
+}
+.selectAll view{
+  float: left;
+  height:80rpx;
+  line-height: 84rpx;
+  font-size: 16px;
+}
