@@ -1,0 +1,49 @@
+<!--pages/detail/detail.wxml-->
+<view class="content">
+  <!-- 轮播 -->
+  <view class='swiperF'>
+    <swiper  autoplay interval="3500" duration="500" circular indicator-dots indicator-active-color="rgba(48,200,249,.7)" indicator-color="rgba(48,200,249,.3)">
+      <block wx:for="{{imgUrls}}" wx:key="{{item.id}}">
+        <swiper-item>
+          <image src="{{item.url}}" lazy-load scaleToFill/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 总结 -->
+  <view class="summary">
+    <text>甜品台作品展示</text>
+    <view class="summary-count">
+      <text>面议</text>
+      <text decode="{{true}}">库存:999&nbsp;&nbsp;&nbsp;销量:133</text>
+    </view>
+  </view>
+  <view class="garyBox"></view>
+  <!-- 评论 -->
+  <view class="comment">
+    <view class="comment-top">
+      <image  src="http://img2.imgtn.bdimg.com/it/u=2972896022,2526109288&fm=26&gp=0.jpg" lazy-load scaleToFill/>
+      <text>思甜忆苦</text>
+    </view>
+    <view class="comment-middle">
+      <view wx:for="{{commentList}}" wx:key="{{item.id}}">
+        <text>{{item.name}}</text>
+        <view class='comment-ring'>
+          <view>5</view>
+        </view>
+      </view>
+    </view>
+    <view class="comment-bottom">
+      <text>评价</text>
+      <view>综合评分<text>5</text></view>
+      <text>暂无评价</text>
+    </view>
+  </view>
+  <view class="garyBox"></view>
+  <!-- 底部客服 -->
+  <view class="tab">
+    <view><button open-type='contact'>客服</button></view>
+    <view bindtap='handleCall' data-reply-phone="13071858818">电话:13333333333</view>
+  </view>
+</view>
+

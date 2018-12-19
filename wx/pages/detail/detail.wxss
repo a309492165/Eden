@@ -1,0 +1,123 @@
+/* pages/detail/detail.wxss */
+page{
+  width:100%;
+  height:100%;
+}
+.content{
+  width:100%;
+  height:100%;
+  font-size:14px;
+
+}
+/* swiper */
+.swiperF{
+  width: 100%;
+  height:300rpx;
+}
+.swiperF swiper,.swiperF swiper image{
+  width: 100%;
+  height:100%;
+}
+/* 商品简介 */
+.summary{
+  padding:10rpx 40rpx;
+}
+.summary-count{
+  margin-top:10rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.summary-count>text:first-child{
+  font-size:16px;
+  color:#D81E06;
+}
+.summary-count>text:last-child{
+  font-size:12px;
+  color:#bfbfbf;
+  line-height: 60rpx;
+}
+/* 商品评论 */
+.comment{
+  padding:30rpx;
+}
+.comment-top>image{
+  width:120rpx;
+  height:120rpx;
+  border-radius:50%;
+  vertical-align:top;
+}
+.comment-top>text{
+  margin-left:20rpx;
+}
+.comment-middle{
+  display: flex;
+  justify-content: space-between;
+  margin-top:26rpx;
+  color:#bfbfbf;
+}
+.comment-middle>view{
+  text-align: center;
+}
+.comment-ring{
+  width:68rpx;
+  height:68rpx;
+  text-align: center;
+  border:1rpx solid #76AF21;
+  border-radius:50%;
+  box-shadow:#bfbfbf;
+  margin:10rpx auto;
+}
+.comment-ring>view{
+  width:50rpx;
+  height:50rpx;
+  line-height:50rpx;
+  text-align: center;
+  background:#76AF21;
+  border-radius:50%;
+  margin:9rpx auto;
+  color:#fff;
+}
+.comment-bottom{
+  margin-top:20rpx;
+  font-size:12px;
+  color:#bfbfbf;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.comment-bottom>view:nth-child(2){
+  color:#111;
+  position: absolute;
+  top:0;
+  left:120rpx;
+}
+.comment-bottom>view:nth-child(2)>text{
+  color:#D81E06;
+}
+.comment-bottom>text:nth-child(3)::after{
+  content:"";
+  display:inline-block;
+  width:20rpx;
+  height:20rpx;
+  border:1rpx solid #bfbfbf;
+  border-left:none;border-bottom:none;
+  transform:rotate(45deg);
+}
+/* 客户功能 */
+.tab{
+  width: 100%;
+  position:fixed;
+  bottom:0;
+  left:0;right:0;
+  display: flex;
+  text-align:center;
+  font-size:20px;
+}
+.tab>view{
+  width:50%;
+  background: #D81E06;
+  padding:16rpx;
+}
+.tab>view:first-child{
+  background: #76AF21;
+}

@@ -14,7 +14,7 @@
 <!-- 商品模块 -->
 <view class='shop-container'>
   <block wx:for="{{shopList}}" wx:key="{{item.id}}">
-    <view class="shop-item">
+    <view class="shop-item" bindtap="handleDetail">
       <image src="{{item.img}}" lazy-load scaleToFill></image>
       <view class="shop-item-desc">
         <text class="ell">{{item.desc}}</text>

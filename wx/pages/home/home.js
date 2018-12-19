@@ -19,7 +19,11 @@ Page({
       { id: 5, img: 'http://img2.imgtn.bdimg.com/it/u=2972896022,2526109288&fm=26&gp=0.jpg', desc: '美味蛋糕美味蛋糕美味蛋糕美味', price: 398 }
     ]
   },
-
+  handleDetail(){
+    wx.navigateTo({
+      url: '/pages/detail/detail'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

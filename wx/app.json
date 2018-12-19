@@ -1,9 +1,10 @@
 {
   "pages": [
-    
+    "pages/detail/detail",
+    "pages/home/home",
+    "pages/classify/classify",
     "pages/shopcar/shopcar",
     "pages/myself/myself",
-    "pages/home/home",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -14,8 +15,8 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color": "#111",
-    "selectedColor": "#f40",
+    "color": "#bfbfbf",
+    "selectedColor": "#D81E06",
     "position": "bottom",
     "list": [
       {
@@ -25,16 +26,22 @@
         "selectedIconPath": "static/home-active.png"
       },
       {
+        "pagePath": "pages/classify/classify",
+        "text": "分类",
+        "iconPath": "static/classify.png",
+        "selectedIconPath": "static/classify-active.png"
+      },
+      {
         "pagePath": "pages/shopcar/shopcar",
-        "text": "商品",
-        "iconPath": "static/message.png",
-        "selectedIconPath": "static/message-active.png"
+        "text": "购物车",
+        "iconPath": "static/cart.png",
+        "selectedIconPath": "static/cart-active.png"
       },
       {
         "pagePath": "pages/myself/myself",
         "text": "个人",
-        "iconPath": "static/profile.png",
-        "selectedIconPath": "static/profile-active.png"
+        "iconPath": "static/people.png",
+        "selectedIconPath": "static/people-active.png"
       }
     ]
   }

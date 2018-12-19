@@ -1,0 +1,21 @@
+<view class='content'>
+  <view class='content-left'>
+    <block wx:for="{{classList}}" wx:key="{{item.id}}">
+      <view class="content-left-item {{curNav == item.id ? 'active':''}}" bindtap='switchRightTab' data-index="{{index}}" data-id="{{item.id}}">
+        {{item.class_name}}
+      </view>
+    </block>
+  </view>
+  <view class='content-right'>
+    <view wx:if="{{classList[curIndex].ishaveChild}}">
+      <block wx:for="{{classList[curIndex].children}}" wx:key="{{item.child_id}}">
+        <view class="content-right-item">
+          <image  src="{{item.img}}" lazy-load scaleToFill/>
+          <text>{{item.desc}}</text>
+        </view>
+      </block>
+    </view>
+    <!--如果无数据，则显示数据-->
+    <view class="nodata_text" wx:else>该分类暂无</view>
+  </view>
+</view>
