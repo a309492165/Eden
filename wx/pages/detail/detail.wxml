@@ -40,10 +40,55 @@
     </view>
   </view>
   <view class="garyBox"></view>
+  <!-- 相关 -->
+  <view class='relevant' style="height:{{swiperHeight+82}}rpx">
+    <view class='relevant-nav'>
+      <view class="{{curIndex == index ? 'active':''}}" wx:for="{{navList}}" wx:key="{{item.id}}" bindtap='handleNav' data-index="{{index}}">{{item.title}}</view>
+    </view>
+    <swiper class='relevant-navItem' current="{{curIndex}}" bindchange='handleSwiper' style="height:{{swiperHeight}}rpx">
+      <swiper-item style="margin-bottom:120rpx;">
+        <view class='relevant-navItem-img'>
+          <block wx:for="{{imgDetailList}}" wx:key="{{index}}">
+            <image src="{{item}}" mode="widthFix" lazy-load scaleToFill bindload='imageLoad' data-index="{{index}}"/>
+          </block>
+        </view>
+      </swiper-item>
+      <swiper-item style="">
+        <view class='relevant-navItem-pro'>
+          <view>生产日期：当天制作并配送</view>
+          <view>生产许可证编号：JY21101091559161</view>
+          <view>厂名：哈尔滨思甜忆苦</view>
+          <view>厂家联系方式：13071858818</view>
+          <view>配料表：香港美玫面粉，法国爱乐薇铁塔奶油，新鲜时令水果，白砂糖等</view>
+          <view>保鲜条件：0-4℃保藏12个小时，10℃适宜赏味</view>
+          <view>食品添加剂：无</view>
+          <view>包装方式：盒装</view>
+          <view>配送范围：哈尔滨三环以内包邮，其他请咨询客服</view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class='shop-container relevant-navItem-recommend'>
+          <view>为您相关推荐</view>
+          <block wx:for="{{shopList}}" wx:key="{{item.id}}">
+            <view class="shop-item" bindtap="handleDetail">
+              <image src="{{item.img}}" lazy-load scaleToFill></image>
+              <view class="shop-item-desc">
+                <text class="ell">{{item.desc}}</text>
+                <view class="shop-item-buy">
+                  <view><text>￥</text>{{item.price}}</view>
+                  <button size="mini">去购买</button>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
   <!-- 底部客服 -->
   <view class="tab">
     <view><button open-type='contact'>客服</button></view>
-    <view bindtap='handleCall' data-reply-phone="13071858818">电话:13333333333</view>
+    <view bindtap='handleCall' data-reply-phone="13071858818">电话:13071858818</view>
   </view>
 </view>
 
