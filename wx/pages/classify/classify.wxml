@@ -9,7 +9,7 @@
   <view class='content-right'>
     <view wx:if="{{classList[curIndex].ishaveChild}}">
       <block wx:for="{{classList[curIndex].children}}" wx:key="{{item.child_id}}">
-        <view class="content-right-item">
+        <view class="content-right-item" bindtap='handleJumpCd'>
           <image  src="{{item.img}}" lazy-load scaleToFill/>
           <text>{{item.desc}}</text>
         </view>

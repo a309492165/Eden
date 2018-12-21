@@ -39,6 +39,12 @@ Page({
       curIndex: index
     })
   },
+  //跳转到详情分类
+  handleJumpCd(){
+    wx.navigateTo({
+      url: '/pages/classifyDetail/classifyDetail'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

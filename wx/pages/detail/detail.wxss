@@ -106,7 +106,7 @@ page{
 /* 相关 */
 .relevant{
   height:100%;
-  padding-bottom:100rpx;
+  margin-bottom:100rpx;
 }
 .relevant-nav{
   display:flex;
@@ -124,7 +124,7 @@ page{
 }
 .relevant-navItem{
   height: 100%;
-  padding-bottom:100rpx;
+  margin-bottom:100rpx;
 }
 .relevant-navItem-img>image{
   width: 100%;

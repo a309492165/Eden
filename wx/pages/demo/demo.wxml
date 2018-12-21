@@ -1,0 +1,11 @@
+<!-- <map
+id="myMap"
+style="width: 100%; height: 300px;"
+longitude="" latitude=""
+scale='16'
+subkey="SXJBZ-QTXHR-MUYWW-WPGTM-U3ANH-Z4FSE"
+polyline="{{polyline}}"
+markers="{{markers}}"
+enable-zoom enable-scroll
+></map>
+<button type="primary" bindtap="getCenterLocation">获取位置</button> -->

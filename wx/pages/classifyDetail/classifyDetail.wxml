@@ -1,0 +1,38 @@
+<!--pages/classifyDetail/classifyDetail.wxml-->
+<view class="content">
+  
+  <!-- 分类导航 -->
+  <view class="classify-nav">
+    <view wx:for="{{nav}}" wx:key="{{index}}" bindtap="handleShowModel" data-index="{{index}}" class="{{curIndex == index ? 'navActive':''}}">{{item}}
+      <!-- 下角标 -->
+      <view class="sub {{curIndex == index ? 'subActive':''}}"></view>
+    </view>
+  </view>
+  <!-- 模态层 -->
+  <view wx:if="{{showPop}}" class='mask-layer' bindtap='handleHideModel'></view>
+  <view wx:if="{{showPop}}" class="pop-common">
+    <view class="pop-common-top">
+      <view wx:for="{{popItemList}}" wx:key="{{index}}" data-index='{{index}}' bindtap="handleChangePop">{{item}}
+        <icon wx:if="{{curPopIndex==index}}" type="success_no_circle" size="20" color="red"/>
+      </view>
+    </view>
+    <view  class="pop-common-bottom">
+      <button bindtap="handleDisPop">重新选定</button>
+      <button bindtap="handleSelect">查找</button>
+    </view>
+  </view>
+  <view class='shop-container'>
+    <block wx:for="{{shopList}}" wx:key="{{item.id}}">
+      <view class="shop-item" bindtap="handleDetail">
+        <image src="{{item.img}}" lazy-load scaleToFill></image>
+        <view class="shop-item-desc">
+          <text class="ell">{{item.desc}}</text>
+          <view class="shop-item-buy">
+            <view><text>￥</text>{{item.price}}</view>
+            <button size="mini">去购买</button>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

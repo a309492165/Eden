@@ -64,7 +64,7 @@ Page({
     const query = wx.createSelectorQuery()
     var that = this
     query.select(tmpName).boundingClientRect((rect) => {
-      //console.log(rect.height)
+      console.log(rect.height)
       that.setData({
         swiperHeight: rect.height*2+20
       })
