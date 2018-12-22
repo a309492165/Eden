@@ -110,8 +110,45 @@
   <!-- 模态层 -->
   <view wx:if="{{showPop}}" class='mask-layer' bindtap='handleHideModel'></view>
   <!-- 购物弹窗 -->
-  <view class='addShop'>
-    
+  <view class='addShop' wx:if="{{showPop}}">
+    <view class='addShop-text'>
+      <image src="http://img2.imgtn.bdimg.com/it/u=2972896022,2526109288&fm=26&gp=0.jpg" lazy-load scaleToFill/>
+      <view class='addShop-text-desc'>
+        <view>美味蛋糕</view>
+        <view><text class="priceColor">￥258.00</text>库存:999</view>
+        <view><text>已选</text><view>数量:1</view></view>
+      </view>
+    </view>
+    <view class='addShop-btn'>
+      <view class='addShop-btn-select'>
+        <text>尺寸</text>
+        <view>
+          <view>1</view>
+          <view>2</view>
+          <view>3</view>
+        </view>
+      </view>
+      <view class='addShop-btn-select'>
+        <text>尺寸</text>
+        <view>
+          <view>1</view>
+          <view>2</view>
+          <view>3</view>
+        </view>
+      </view>
+    </view>
+    <view class='addShop-count'>
+      <text>数量</text>
+      <view class='addCount'>
+        <text bindtap="minusCount" data-index="{{index}}" data-state="false">-</text>
+        <text>1</text>
+        <text bindtap="addCount" data-index="{{index}}" data-state="true">+</text>
+      </view>
+    </view>
+    <view class='addShop-end'>
+      <view>总价：<text class="priceColor">￥258.00</text></view>
+      <view>加入购物车</view>
+    </view>
   </view>
 </view>
 

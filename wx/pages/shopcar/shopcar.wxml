@@ -21,7 +21,7 @@
             <text bindtap="minusCount" data-index="{{index}}" data-state="false">-</text>
             <text>{{item.num}}</text>
             <text bindtap="addCount" data-index="{{index}}" data-state="true">+</text>
-        </view>
+          </view>
         </view>
         <text bindtap="deleteList" data-index="{{index}}" class='delete'> × </text>
       </view>

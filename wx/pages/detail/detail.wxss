@@ -229,10 +229,85 @@ page{
 }
 /* 购物弹窗 */
 .addShop{
-  width: 100%;
   height:800rpx;
-  background: #ccc;
+  background: #fff;
   position: fixed;
-  bottom: 0;
+  bottom: 0;left:0;right:0;
   z-index: 1000;
+  padding:10rpx 20rpx;
+}
+.addShop>view{
+  display:flex;
+}
+.addShop-text>image{
+  height:160rpx;
+  width:160rpx;
+  margin-right:30rpx;
+}
+.addShop-text-desc{
+  height:140rpx;
+  margin-top:20rpx;
+}
+.addShop-text-desc>view{
+  display:flex;
+  height:40rpx;
+  line-height: 40rpx;
+}
+.addShop-text-desc>view:nth-child(1){
+  color:#111;
+}
+.addShop-text-desc>view:nth-child(2){
+  padding: 10rpx 0;
+}
+.addShop-text-desc>view:nth-child(3)>view{
+  margin-left:20rpx;
+}
+.addShop .addShop-btn{
+  display: block;
+}
+.addShop-btn-select{
+  margin-top:30rpx;
+}
+.addShop-btn-select>view{
+  display: flex;
+  margin-top:10rpx; 
+  color: #111;
+}
+.addShop-btn-select>view>view{
+  padding:10rpx 20rpx;
+  border:1rpx solid #bfbfbf;
+  border-radius:15rpx;
+  margin-right:20rpx;
+}
+.addShop-count{
+  margin-top:30rpx;
+  justify-content: space-between;
+  color:#111;
+}
+.addCount>text:nth-child(odd){
+  padding: 0 30rpx;
+}
+.addShop-end{
+  position: absolute;
+  bottom: 0;left:0;right:0;
+  color:#111;
+  height:100rpx;
+  line-height: 100rpx;
+  font-size:16px;
+}
+.addShop-end>view:first-child{
+  padding:0 20rpx;
+}
+.addShop-end>view:last-child{
+  position: absolute;
+  bottom:0;
+  right:0; 
+  color:#fff;
+  background: #f40;
+  padding:0 30rpx;
+}
+/* 标价颜色 */
+.priceColor{
+  color:#D81E06;
+  margin-right:80rpx;
 }
