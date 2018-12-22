@@ -1,21 +1,79 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+page{
+  height:100%;
+  width:100%;
 }
-
+.content{
+  font-size:16px;
+}
+/* 获取用户信息 */
+.userinfo {
+  margin-top:30rpx;
+  padding: 30rpx;
+}
+.userinfo button{
+  width: 128rpx;
+  height: 128rpx;
+  line-height: 128rpx;
+  border-radius: 20rpx;
+  margin:0;
+}
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+  border-radius: 20rpx;
 }
-
 .userinfo-nickname {
-  color: #aaa;
+  margin-left:30rpx;
+  color: #bfbfbf;
 }
-
 .usermotto {
   margin-top: 200px;
+}
+/* 查看订单 */
+.wrapper-list{
+  font-size:14px;
+  border-top:1rpx solid #bfbfbf;
+}
+.wrapper-list text{
+  color:#bfbfbf;
+  font-size:13px; 
+}
+.order>view{
+  display: flex;
+  justify-content:space-between;
+  padding: 20rpx;
+}
+.order-select{
+  margin:0 20rpx;
+}
+.order .order-img{
+  border-top:1rpx solid #bfbfbf;
+  border-bottom:1rpx solid #bfbfbf;
+  padding: 20rpx 0;
+}
+.order .order-img>view{
+  width: 25%;
+  text-align: center;
+  border-right:1rpx solid #bfbfbf;
+}
+.order .order-img>view:last-child{
+  border:none;
+}
+.order .order-img image{
+  width:60rpx;
+  height:60rpx;
+}
+.order .order-img text{
+  display: block;
+  margin-top:20rpx;
+}
+.funList{
+  padding: 0 20rpx;
+}
+.funList>navigator{
+  display: flex;
+  justify-content:space-between;
+  padding: 20rpx;
+  border-bottom:1rpx solid #bfbfbf;
 }

@@ -32,6 +32,8 @@ Page({
       curIndex:index
     })
     this.handleChangeItem(index)
+    
+    this.handleDisPop()
   },
   handleHideModel(){
     this.setData({

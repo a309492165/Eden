@@ -87,8 +87,31 @@
   </view>
   <!-- 底部客服 -->
   <view class="tab">
-    <view><button open-type='contact'>客服</button></view>
-    <view bindtap='handleCall' data-reply-phone="13071858818">电话:13071858818</view>
+    <view class="tab-left">
+      <view>
+        <button open-type='contact'>
+          <image src="../../static/tell.png" lazy-load scaleToFill/>
+          <text>客服</text>
+        </button>
+      </view>
+      <view>
+        <image src="../../static/collect.png" lazy-load scaleToFill/>
+        <text>收藏</text>
+      </view>
+      <view bindtap='handleCall' data-reply-phone="13071858818">
+        <image src="../../static/phone.png" lazy-load scaleToFill/>
+        <text>电话</text>
+      </view>
+    </view>
+    <view class="tab-right">
+      <view wx:for="{{payCart}}" wx:key="{{index}}" data-index="{{index}}" bindtap="handleShowModel">{{item}}</view>
+    </view>
+  </view>
+  <!-- 模态层 -->
+  <view wx:if="{{showPop}}" class='mask-layer' bindtap='handleHideModel'></view>
+  <!-- 购物弹窗 -->
+  <view class='addShop'>
+    
   </view>
 </view>
 

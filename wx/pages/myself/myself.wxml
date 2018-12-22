@@ -1,12 +1,43 @@
-<view class="container">
+<view class="content">
+<!-- 用户信息 -->
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点我 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <!-- 分割块 -->
+  <view class='garyBox'></view>
+  <!-- 查看订单 -->
+  <view class="wrapper-list order">
+    <view class="order-select">
+      查看订单
+      <text>全部订单></text>
+    </view>
+    <view class="order-img">
+      <view wx:for="{{stayList}}" wx:key="{{index}}">
+        <image src="{{item.img}}" lazy-load scaleToFill/>
+        <text>{{item.title}}</text>
+      </view>
+    </view>
   </view>
+  <!-- 分割块 -->
+  <view class='garyBox'></view>
+  <!-- 功能列表 -->
+  <view class="wrapper-list funList">
+    <navigator>
+      地址管理
+      <text>查看></text>
+    </navigator>
+    <navigator>
+      我的收藏
+      <text>></text>
+    </navigator>
+    <navigator>
+      我的优惠卷
+      <text>></text>
+    </navigator>
+  </view>
+  <view class="moveServer">技术支持@移动营销服务</view>
 </view>

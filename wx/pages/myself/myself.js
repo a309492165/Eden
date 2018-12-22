@@ -1,13 +1,17 @@
 // pages/myself/myself.js
 //获取应用实例
 const app = getApp()
-
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    stayList:[
+      { img: "../../static/stayPay.png", title: "待付款" },
+      { img: "../../static/stayDelivery.png", title: "待发货" },
+      { img: "../../static/stayCollect.png", title: "待收货" },
+      {img:"../../static/complete.png",title:"已完成"}
+    ]
   },
   //事件处理函数
   bindViewTap: function () {
