@@ -114,26 +114,31 @@
     <view class='addShop-text'>
       <image src="http://img2.imgtn.bdimg.com/it/u=2972896022,2526109288&fm=26&gp=0.jpg" lazy-load scaleToFill/>
       <view class='addShop-text-desc'>
-        <view>美味蛋糕</view>
-        <view><text class="priceColor">￥258.00</text>库存:999</view>
-        <view><text>已选</text><view>数量:1</view></view>
+        <view>{{titleName}}</view>
+        <view><text class="priceColor">￥{{unitPrice}}.00</text>库存:999</view>
+        <view>
+          <text>已选</text>
+          <text>数量:{{countCalc}}</text>
+          <text wx:if="{{curSizeShow}}">尺寸:{{curSize}}</text>
+          <text wx:if="{{curSpecShow}}">规格:{{curSpec}}</text>
+        </view>
       </view>
     </view>
     <view class='addShop-btn'>
       <view class='addShop-btn-select'>
         <text>尺寸</text>
         <view>
-          <view>1</view>
-          <view>2</view>
-          <view>3</view>
+          <view class="{{curSizeIndex == index ? 'active':''}}" wx:for="{{selectSizeList}}" wx:key="{{index}}" data-index="{{index}}"  bindtap='selectSize'>
+            {{item}}
+          </view>
         </view>
       </view>
       <view class='addShop-btn-select'>
-        <text>尺寸</text>
+        <text>规格</text>
         <view>
-          <view>1</view>
-          <view>2</view>
-          <view>3</view>
+          <view class="{{curSpecIndex == index ? 'active':''}}" wx:for="{{selectSpecList}}" wx:key="{{index}}" data-index="{{index}}"  bindtap='selectSpec'>
+            {{item}}
+          </view>
         </view>
       </view>
     </view>
@@ -141,13 +146,13 @@
       <text>数量</text>
       <view class='addCount'>
         <text bindtap="minusCount" data-index="{{index}}" data-state="false">-</text>
-        <text>1</text>
+        <text>{{countCalc}}</text>
         <text bindtap="addCount" data-index="{{index}}" data-state="true">+</text>
       </view>
     </view>
     <view class='addShop-end'>
-      <view>总价：<text class="priceColor">￥258.00</text></view>
-      <view>加入购物车</view>
+      <view>总价：<text class="priceColor">￥{{countPrice}}.00</text></view>
+      <view bindtap='addCar' class="{{payChoice == 1 ? 'active':''}}">{{payText}}</view>
     </view>
   </view>
 </view>

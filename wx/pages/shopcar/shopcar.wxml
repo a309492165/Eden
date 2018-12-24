@@ -33,6 +33,7 @@
       <icon wx:if="{{selectAllStatus}}" type="success" color="red" bindtap="selectAll"/>
       <icon wx:else type="circle"  bindtap="selectAll"/>
       <!-- 总价 -->
-      <view>全选:合计￥{{totalPrice}}</view>
+      <view>全选:合计<text>￥{{totalPrice}}</text></view>
+      <view>结算</view>
   </view>
 </view>

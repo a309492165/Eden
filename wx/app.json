@@ -1,13 +1,15 @@
 {
   "pages": [
-    "pages/detail/detail",
     "pages/home/home",
+    "pages/shopcar/shopcar",
+    "pages/detail/detail",
+    
     "pages/myself/myself",
     "pages/classifyDetail/classifyDetail",
     "pages/demo01/demo01",
     "pages/demo/demo",
     "pages/classify/classify",
-    "pages/shopcar/shopcar",
+    
     "pages/index/index",
     "pages/logs/logs"
   ],

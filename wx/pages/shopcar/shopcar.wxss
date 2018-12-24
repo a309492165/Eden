@@ -78,7 +78,8 @@
   z-index: 9;
   height:80rpx;
   width: 100%;
-  background-color: #A28B66;
+  font-size:15px;
+  background-color: #fff;
 }
 .selectAll::before{
   display: table;
@@ -88,9 +89,19 @@
   float: left;
   margin: 20rpx;
 }
+.selectAll text{
+  color:#D81E06;
+}
 .selectAll view{
   float: left;
   height:80rpx;
   line-height: 84rpx;
-  font-size: 16px;
+}
+.selectAll>view:last-child{
+  position: absolute;
+  right:0;
+  bottom:0;
+  background: #D81E06;
+  color:#fff;
+  padding: 0 30rpx;
 }

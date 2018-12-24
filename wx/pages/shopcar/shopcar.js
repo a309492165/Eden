@@ -63,17 +63,17 @@ Page({
     this.getTotalPrice();                               // 重新获取总价
   },
   // 增加数量
-  addCount(e) {
-    const index = e.currentTarget.dataset.index;
-    let carts = this.data.carts;
-    let num = carts[index].num;
-    num = num + 1;
-    carts[index].num = num;
-    this.setData({
-      carts: carts
-    });
-    this.getTotalPrice();
-  },
+  // addCount(e) {
+  //   const index = e.currentTarget.dataset.index;
+  //   let carts = this.data.carts;
+  //   let num = carts[index].num;
+  //   num = num + 1;
+  //   carts[index].num = num;
+  //   this.setData({
+  //     carts: carts
+  //   });
+  //   this.getTotalPrice();
+  // },
   // 计算数量
   // modifyCount(e){
   //   const index = e.currentTarget.dataset.index;
@@ -159,7 +159,6 @@ Page({
         hasList: true
       })
     }
-    console.log(this.data.hasList);
   },
 
   /**
@@ -170,7 +169,23 @@ Page({
     for (var i = 0; i < this.data.carts.length; i++) {
       this.data.carts[i].selected = false
     } 
-    
+    // 获取产品展示页保存的缓存数据（购物车的缓存数组，没有数据，则赋予一个空数组）  
+    var arr = wx.getStorageSync('cart') || [];
+    console.info("缓存数据：" + arr);    // 有数据的话，就遍历数据，计算总金额 和 总数量  
+    if (arr.length > 0) {
+      // 更新数据  
+      this.setData({
+        carts: arr,
+        iscart: true,
+        hidden: false
+      });
+      console.info("缓存数据：" + arr);
+    } else {
+      this.setData({
+        iscart: false,
+        hidden: true,
+      });
+    }
   },
 
   /**

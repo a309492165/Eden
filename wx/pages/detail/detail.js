@@ -40,8 +40,24 @@ Page({
     ],
     //购物或购买
     payCart:['加入购物车','立即购买'],
+    payChoice:0,
+    payText: '加入购物车',
     //模态层
     showPop: false,
+    //选择尺寸
+    curSizeIndex:-1,
+    curSizeShow:false,
+    curSize:'',
+    selectSizeList:['6寸', '8寸', '10寸'],
+    curSpecIndex: -1,
+    curSpecShow: false,
+    curSpec: '',
+    selectSpecList: ['原味', '蔓越莓', '巧克力'],
+    //计数和总价
+    titleName:'美味蛋糕',
+    unitPrice:258,
+    countCalc:1,
+    countPrice:'',
   },
   // 图片自适应
   imageLoad(e) {
@@ -72,7 +88,7 @@ Page({
     const query = wx.createSelectorQuery()
     var that = this
     query.select(tmpName).boundingClientRect((rect) => {
-      console.log(rect.height)
+      //console.log(rect.height)
       that.setData({
         swiperHeight: rect.height*2+20
       })
@@ -113,10 +129,14 @@ Page({
       url: '/pages/detail/detail'
     })
   },
+  //模态层
   handleShowModel(e) {
-    console.log(e.target.dataset.index)
+    let text = e._relatedInfo.anchorTargetText;
+    let index = e.target.dataset.index;
     this.setData({
-      showPop: true
+      showPop: true,
+      payText:text,
+      payChoice: index
     })  
   },
   handleHideModel() {
@@ -124,11 +144,92 @@ Page({
       showPop: false
     })
   },
+  //选择尺寸
+  selectSize(e){
+    let index = e.target.dataset.index;
+    let desc = e._relatedInfo.anchorTargetText;
+    this.setData({
+      curSizeIndex:index,
+      curSizeShow: true,
+      curSize: desc
+    })
+  },
+  selectSpec(e) {
+    let index = e.target.dataset.index;
+    let desc = e._relatedInfo.anchorTargetText;
+    this.setData({
+      curSpecIndex: index,
+      curSpecShow:true,
+      curSpec:desc
+    })
+  },
+  //增加数量
+  addCount(e) {
+    let count = this.data.countCalc;
+    count++;
+    let price = count * this.data.unitPrice;
+    this.setData({
+      countCalc:count,
+      countPrice:price
+    })
+  },
+  // 减少数量
+  minusCount(e) {
+    let count = this.data.countCalc;
+    if (count <= 1) {
+      wx.showToast({
+        title: '超过下限了！',
+        icon: 'success',
+        duration: 2000
+      })
+      return false;
+    }
+    count--;
+    let price = count * this.data.unitPrice;
+    this.setData({
+      countCalc: count,
+      countPrice: price
+    })
+  },
+  //加入购物车缓存或结算
+  addCar(e){
+    if(!this.data.curSizeShow){
+      wx.showToast({
+        title: '请选择尺寸！',
+        icon:'none',
+        duration: 2000
+      });
+      return;
+    } else if (!this.data.curSpecShow){
+      wx.showToast({
+        title: '请选择规格！',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+    if(this.data.payChoice == 0){
+      var goods = {};
+      goods.count = this.data.countCalc;
+      goods.title = this.data.titleName;
+      goods.size = this.data.curSize;
+      goods.spec = this.data.curSpec;
+      console.log(goods);
+      // 获取购物车的缓存数组（没有数据，则赋予一个空数组）  
+      var arr = wx.getStorageSync('cart') || [];
+      console.log("arr,{}", arr); 
+      arr.push(goods);
+      console.log(arr)
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let price = this.data.unitPrice;
+    this.setData({
+      countPrice:price
+    })
   },
 
   /**
