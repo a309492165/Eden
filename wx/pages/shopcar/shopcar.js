@@ -5,23 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    carts:[
-      { id: 0, desc: '美味蛋糕美味蛋糕美味蛋糕美味', addr: '三环以内免费送货三环以内免货', price: 198, num: 1 },
-      { id: 1, desc: '美味蛋糕美味蛋糕美味蛋糕美味', addr: '三环以内免费送货三环以内免货', price: 298, num: 3 },
-      { id: 2, desc: '美味蛋糕美味蛋糕美味蛋糕美味', addr: '三环以内免费送货三环以内免货', price: 398, num: 2 },
-      { id: 3, desc: '美味蛋糕美味蛋糕美味蛋糕美味', addr: '三环以内免费送货三环以内免货', price: 298, num: 3 }, 
-      { id: 4, desc: '美味蛋糕美味蛋糕美味蛋糕美味', addr: '三环以内免费送货三环以内免货', price: 298, num: 3 },
-    ],
+    carts:[],
     totalPrice:'0.00',
     hasList:false,
     selectAllStatus:false
   },
+  //总价计数功能
   getTotalPrice() {
     let carts = this.data.carts;                  // 获取购物车列表
     let total = 0;
     for (let i = 0; i < carts.length; i++) {         // 循环列表得到每个数据
       if (carts[i].selected) {                   // 判断选中才会计算价格
-        total += carts[i].num * carts[i].price;     // 所有价格加起来
+        total += carts[i].count * carts[i].price;     // 所有价格加起来
       }
     }
     this.setData({                                // 最后赋值到data中渲染到页面
@@ -39,6 +34,7 @@ Page({
     var result = true;                              
     for (var i = 0; i < this.data.carts.length; i++) {
       result = result && this.data.carts[i].selected
+      console.log(this.data.carts[i].selected)
     }
     this.setData({
       carts: carts,
@@ -62,50 +58,14 @@ Page({
     });
     this.getTotalPrice();                               // 重新获取总价
   },
-  // 增加数量
-  // addCount(e) {
-  //   const index = e.currentTarget.dataset.index;
-  //   let carts = this.data.carts;
-  //   let num = carts[index].num;
-  //   num = num + 1;
-  //   carts[index].num = num;
-  //   this.setData({
-  //     carts: carts
-  //   });
-  //   this.getTotalPrice();
-  // },
-  // 计算数量
-  // modifyCount(e){
-  //   const index = e.currentTarget.dataset.index;
-  //   const state = e.currentTarget.dataset.state;
-  //   let carts = this.data.carts;
-  //   let num = carts[index].num;
-  //   if (state){
-  //     num++;
-  //     carts[index].num = num;
-  //     this.setData({
-  //       carts:carts
-  //     });
-  //   }else{
-  //     if (carts[index].num == 1){
-  //       return
-  //     };
-  //     num--;
-  //     carts[index].num = num;
-  //     this.setData({
-  //       carts: carts
-  //     });
-  //     console.log(state);
-  //   }
-    
-  // },  
+
   // 增加数量
   addCount(e) {
     const index = e.currentTarget.dataset.index;
     let carts = this.data.carts;
-    let num = carts[index].num;
+    let num = carts[index].count;
     num = num + 1;
-    carts[index].num = num;
+    carts[index].count = num;
     this.setData({
       carts: carts
     });
@@ -115,33 +75,18 @@ Page({
   minusCount(e) {
     const index = e.currentTarget.dataset.index;
     let carts = this.data.carts;
-    let num = carts[index].num;
+    let num = carts[index].count;
     if (num <= 1) {
       return false;
     }
     num = num - 1;
-    carts[index].num = num;
+    carts[index].count = num;
     this.setData({
       carts: carts
     });
     this.getTotalPrice();
   },
-  //删除列表项
-  deleteList(e) {
-    const index = e.currentTarget.dataset.index;
-    let carts = this.data.carts;
-    carts.splice(index, 1);              // 删除购物车列表里这个商品
-    this.setData({
-      carts: carts
-    });
-    if (!carts.length) {                  // 如果购物车为空
-      this.setData({
-        hasList: false              // 修改标识为false，显示购物车为空页面
-      });
-    } else {                              // 如果不为空
-      this.getTotalPrice();           // 重新计算总价格
-    }
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -153,25 +98,16 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    //判断是否有列表
-    if (this.data.carts.length > 0) {
-      this.setData({
-        hasList: true
-      })
-    }
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //循环插入多选框判断条件
-    for (var i = 0; i < this.data.carts.length; i++) {
-      this.data.carts[i].selected = false
-    } 
     // 获取产品展示页保存的缓存数据（购物车的缓存数组，没有数据，则赋予一个空数组）  
     var arr = wx.getStorageSync('cart') || [];
-    console.info("缓存数据：" + arr);    // 有数据的话，就遍历数据，计算总金额 和 总数量  
+    //console.info("缓存数据：" + arr);    // 有数据的话，就遍历数据，计算总金额 和 总数量  
     if (arr.length > 0) {
       // 更新数据  
       this.setData({
@@ -186,8 +122,42 @@ Page({
         hidden: true,
       });
     }
+    //console.log(this.data.carts,this.data.hasList);
+    //判断是否有列表
+    if (this.data.carts.length > 0) {
+      this.setData({
+        hasList: true
+      })
+    }else{
+      this.setData({
+        hasList: false
+      })
+    }
+    //循环插入多选框判断条件
+    for (var i = 0; i < this.data.carts.length; i++) {
+      this.data.carts[i].selected = false
+    } 
   },
-
+  //删除列表项
+  deleteList(e) {
+    const index = e.currentTarget.dataset.index;
+    let carts = this.data.carts;
+    if (this.data.carts.length > 0) {
+      carts.splice(index, 1);              // 删除购物车列表里这个商品
+      this.setData({
+        carts: carts
+      });
+      this.getTotalPrice();           // 重新计算总价格
+      wx.setStorageSync('cart', this.data.carts);
+      if (this.data.carts.length == 0){
+        this.setData({
+          hasList: false                // 修改标识为false，显示购物车为空页面
+        });
+        console.log(this.data.carts)
+        wx.setStorageSync('cart', []);  //设置为空缓存列表
+      }
+    }
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

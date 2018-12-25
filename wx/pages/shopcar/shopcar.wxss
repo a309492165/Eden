@@ -41,7 +41,6 @@
   display: block;
   margin-top:10rpx;
   color: #999;
-  
 }
 .pro-wrapper .pro-count{
   font-size:14px;
@@ -70,6 +69,18 @@
 }
 .pro-wrapper .addCount text:nth-child(3){
   text-align: right;
+}
+.pro-wrapper .pro-desc>text:first-child{
+  text-align:left;
+}
+.pro-desc-size{
+  text-align: left;
+  color:#bfbfbf;
+  font-size:12px;
+  margin-top:20rpx;
+}
+.pro-desc-size>text{
+  margin-right:20rpx;
 }
 /* 底部操作栏 */
 .selectAll{

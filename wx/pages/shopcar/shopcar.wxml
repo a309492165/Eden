@@ -12,14 +12,17 @@
         <icon wx:else type="circle" bindtap="selectList" data-index="{{index}}"/>
       </view>
       <image src="http://img2.imgtn.bdimg.com/it/u=2972896022,2526109288&fm=26&gp=0.jpg" lazy-load scaleToFill></image>
-      <view>
-        <text class='ell'>{{item.desc}}</text>
-        <text class='ell'>{{item.addr}}</text>
+      <view class='pro-desc'>
+        <text class='ell'>{{item.title}}</text>
+        <view class='pro-desc-size'>
+          <text class='ell'>尺寸:{{item.size}}</text>
+          <text class='ell'>规格:{{item.spec}}</text>
+        </view>
         <view class='pro-count'>
           <view><text>￥</text>{{item.price}}</view>
           <view class='addCount'>
             <text bindtap="minusCount" data-index="{{index}}" data-state="false">-</text>
-            <text>{{item.num}}</text>
+            <text>{{item.count}}</text>
             <text bindtap="addCount" data-index="{{index}}" data-state="true">+</text>
           </view>
         </view>

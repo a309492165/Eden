@@ -214,12 +214,27 @@ Page({
       goods.title = this.data.titleName;
       goods.size = this.data.curSize;
       goods.spec = this.data.curSpec;
+      goods.price = this.data.unitPrice;
       console.log(goods);
       // 获取购物车的缓存数组（没有数据，则赋予一个空数组）  
       var arr = wx.getStorageSync('cart') || [];
       console.log("arr,{}", arr); 
       arr.push(goods);
-      console.log(arr)
+      // 最后，把购物车数据，存放入缓存  
+      try {
+        wx.setStorageSync('cart', arr)
+        // 返回（在if内使用return，跳出循环节约运算，节约性能） 
+        //关闭窗口
+        wx.showToast({
+          title: '加入购物车成功！',
+          icon: 'success',
+          duration: 2000
+        });
+        //this.closeDialog();
+        return;
+      } catch (e) {
+        console.log(e)
+      }
     }
   },
   /**
