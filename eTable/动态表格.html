@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .container {
+        width: 800px;
+        height: 600px;
+        margin: 20px auto;
+        overflow: auto;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px #525152 solid;
+        text-align: center;
+        font-size: 12px;
+        line-height: 30px;
+        background: #c6c7c6;
+        padding: 10px 16px;
+        width: 122px;
+        position: relative;
+      }
+      input {
+        width: 80px;
+      }
+      textarea {
+        width: 82px;
+        resize: none;
+      }
+
+      /* 模拟表格分割线 */
+      .out {
+        border-top: 50px #d6d3d6 solid;
+        width: 0px;
+        height: 0px;
+        border-left: 120px #bdbabd solid;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .out b {
+        font-style: normal;
+        display: block;
+        position: absolute;
+        top: -49px;
+        left: -120px;
+        width: 120px;
+        text-align: right;
+        padding-right: 10px;
+      }
+      .out em {
+        font-style: normal;
+        display: block;
+        position: absolute;
+        top: -28px;
+        left: -120px;
+        text-align: left;
+        padding-left: 10px;
+      }
+
+      /* 表头 */
+      #head_box th,
+      #head_box input {
+        width: 80px;
+        background-color: #d6d3d6;
+      }
+
+      /* 表主体 */
+      #body_box td:first-child {
+        width: 80px;
+        background-color: #bdbabd;
+      }
+
+      th .del {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      td .del {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      th .move-left {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        cursor: pointer;
+      }
+      th .move-right {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        cursor: pointer;
+      }
+      p {
+        margin: 0;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="edit" class="">编辑</button>
+    <button id="add_h" class="hidden">加预案</button>
+    <button id="add_r" class="hidden">加行业</button>
+    <button id="add_s" class="hidden">保存</button>
+    <div class="container">
+      <div class="table-box" id="ttt"></div>
+    </div>
+    <script src="../echarts/lib/jquery.js"></script>
+    <script src="./Etable.js"></script>
+
+    <script>
+      var headData = []
+      var rowData = []
+      var data = []
+
+      var myTable = new Etable({
+        id: '#ttt',
+        headData: headData,
+        rowData: rowData,
+        edit: false,
+        data: data,
+        noneRow: 1,
+        xName: '响应过程',
+        yName: '部门，单位',
+      })
+
+      myTable.on('#add_s', 'click', function (e, m) {
+        myTable.edit = false
+        myTable.makeTable()
+        $('#add_h').addClass('hidden')
+        $('#add_r').addClass('hidden')
+        $('#add_s').addClass('hidden')
+        $('#edit').removeClass('hidden')
+        console.log(e.headData, e.rowData, e.data)
+      })
+
+      myTable.on('#add_h', 'click', function (e, m) {
+        e.createHead()
+        e.makeTable()
+      })
+      myTable.on('#add_r', 'click', function (e, m) {
+        e.createRow()
+        e.makeTable()
+      })
+
+      myTable.on('#ttt .del-h', 'click', function (e, m) {
+        console.log(e, m.data('hid'))
+        e.deleteHead(m.data('hid'))
+        e.makeTable()
+      })
+      myTable.on('#ttt .del-r', 'click', function (e, m) {
+        e.deleteRow(m.data('rid'))
+        e.makeTable()
+      })
+
+      myTable.on('#ttt .move-left', 'click', function (e, m) {
+        e.moveHeadArr(m.data('hid'), 'left')
+        e.makeTable()
+      })
+      myTable.on('#ttt .move-right', 'click', function (e, m) {
+        e.moveHeadArr(m.data('hid'), 'right')
+        e.makeTable()
+      })
+
+      // input 事件
+      myTable.on('#ttt .body-input', 'change', function (e, m) {
+        var hid = m.data('hid')
+        var rid = m.data('rid')
+        for (var i = 0; i < e.data.length; i++) {
+          for (var j = 0; j < e.data[i].length; j++) {
+            var item = e.data[i][j]
+            if (hid == item.hid && rid == item.rid) {
+              item.value = m.val()
+            }
+          }
+        }
+      })
+
+      // 编辑
+      $('#edit').click(function () {
+        if (!$(this).hasClass('hidden')) {
+          $('#add_h').removeClass('hidden')
+          $('#add_r').removeClass('hidden')
+          $('#add_s').removeClass('hidden')
+          $(this).addClass('hidden')
+          myTable.edit = true
+          myTable.makeTable()
+        }
+      })
+    </script>
+  </body>
+</html>
