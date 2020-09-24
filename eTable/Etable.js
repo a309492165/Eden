@@ -1,4 +1,4 @@
-;(function (window, document) {
+(function (window, document) {
   function Etable(obj) {
     return Etable.prototype.init(obj)
   }
@@ -109,28 +109,28 @@
       }
     },
     deleteRow: function (id) {
+      var idx = 0
       for (var i = 0; i < this.rowData.length; i++) {
         var item = this.rowData[i]
         if (id == item.rid) {
           this.rowData.splice(i, 1)
+          idx = i
           break
         }
       }
       for (var i = 0; i < this.data.length; i++) {
         if (!this.data[i]) return
-        for (var j = 0; j < this.data[i].length; j++) {
-          var item = this.data[i][j]
-          if (id == item.rid) {
-            this.data.splice(i, 1)
-            break
-          }
+        if (idx == i) {
+          this.data.splice(i, 1)
+          break
         }
       }
     },
     makeData: function () {
       var _this = this
       if (_this.headData.length > 0 && _this.rowData.length > 0) {
-        _this.data = []
+        // _this.data = []
+        // debugger
         for (var i = 0; i < _this.rowData.length; i++) {
           if (!_this.data[i]) {
             _this.data[i] = []
@@ -372,18 +372,18 @@
             }
           }
         })
-      // $(document).on('change', this.id + ' .body-input', function (e) {
-      //     var hid = $(this).data('hid')
-      //     var rid = $(this).data('rid')
-      //     for (var i = 0; i < _this.data.length; i++) {
-      //       for (var j = 0; j < _this.data[i].length; j++) {
-      //         var item = _this.data[i][j]
-      //         if (hid == item.hid && rid == item.rid) {
-      //           item.value = $(this).val()
-      //         }
-      //       }
-      //     }
-      //   })
+      $(document).on('change', this.id + ' .body-input', function (e) {
+          var hid = $(this).data('hid')
+          var rid = $(this).data('rid')
+          for (var i = 0; i < _this.data.length; i++) {
+            for (var j = 0; j < _this.data[i].length; j++) {
+              var item = _this.data[i][j]
+              if (hid == item.hid && rid == item.rid) {
+                item.value = $(this).val()
+              }
+            }
+          }
+        })
     },
   }
 
