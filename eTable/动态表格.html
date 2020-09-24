@@ -177,18 +177,18 @@
       })
 
       // input 事件
-      myTable.on('#ttt .body-input', 'change', function (e, m) {
-        var hid = m.data('hid')
-        var rid = m.data('rid')
-        for (var i = 0; i < e.data.length; i++) {
-          for (var j = 0; j < e.data[i].length; j++) {
-            var item = e.data[i][j]
-            if (hid == item.hid && rid == item.rid) {
-              item.value = m.val()
-            }
-          }
-        }
-      })
+      // myTable.on('#ttt .body-input', 'change', function (e, m) {
+      //   var hid = m.data('hid')
+      //   var rid = m.data('rid')
+      //   for (var i = 0; i < e.data.length; i++) {
+      //     for (var j = 0; j < e.data[i].length; j++) {
+      //       var item = e.data[i][j]
+      //       if (hid == item.hid && rid == item.rid) {
+      //         item.value = m.val()
+      //       }
+      //     }
+      //   }
+      // })
 
       // 编辑
       $('#edit').click(function () {
