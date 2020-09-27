@@ -257,7 +257,7 @@
       for (var i = 0; i < Object.keys(obj).length; i++) {
         var key = Object.keys(obj)[i]
         if (key == 'value') {
-          break;
+          continue;
         }
         str += ' data-' + key + '=' + obj[key]
       }
