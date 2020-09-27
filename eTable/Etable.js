@@ -147,7 +147,7 @@
           }
         }
       }
-      
+
       function tml(rid, hid, value) {
         return {
           rid: rid,
@@ -188,8 +188,7 @@
         '</th>'
       if (h.length > 0) {
         for (var i = 0; i < headData.length; i++) {
-          str +=
-            '<th>' + _this.isEditStrH(h, i) + '</th>'
+          str += '<th>' + _this.isEditStrH(h, i) + '</th>'
         }
       }
       tr.html(str)
@@ -199,22 +198,23 @@
     isEditStrH: function (h, i) {
       var str = ''
       if (this.edit) {
-        str += '<button class="del del-h" data-hid="' +
-        h[i].hid +
-        '">x</button>' +
-        '<input class="head-input" type="text" data-hid="' +
-        h[i].hid +
-        '" value="' +
-        h[i].value +
-        '">' +
-        '<span class="move-left" data-hid="' +
-        h[i].hid +
-        '">左</span>' +
-        '<span class="move-right" data-hid="' +
-        h[i].hid +
-        '">右</span>'
+        str +=
+          '<button class="del del-h"' +
+          this.objForKeyData(h[i]) +
+          '>x</button>' +
+          '<input class="head-input" type="text" ' +
+          this.objForKeyData(h[i]) +
+          ' value="' +
+          h[i].value +
+          '">' +
+          '<span class="move-left" ' +
+          this.objForKeyData(h[i]) +
+          '>左</span>' +
+          '<span class="move-right" ' +
+          this.objForKeyData(h[i]) +
+          '>右</span>'
       } else {
-        str += '<p data-hid="'+h[i].hid +'">' + h[i].value + '</p>'
+        str += '<p ' + this.objForKeyData(h[i]) + '>' + h[i].value + '</p>'
       }
       return str
     },
@@ -227,12 +227,11 @@
         var str = ''
         for (var i = 0; i < d.length; i++) {
           str += '<tr>'
-          str += '<td>'+_this.isEditStrR(r, i)+'</td>'
+          str += '<td>' + _this.isEditStrR(r, i) + '</td>'
           for (var j = 0; j < d[i].length; j++) {
             var item = d[i][j]
             if (item !== undefined && item.hid == h[j].hid) {
-              str +=
-                '<td>'+_this.isEditStrB(item)+'</td>'
+              str += '<td>' + _this.isEditStrB(item) + '</td>'
             }
           }
           str += '</tr>'
@@ -240,59 +239,74 @@
       } else if (r.length > 0) {
         var str = ''
         for (var i = 0; i < r.length; i++) {
-          str +=
-            '<tr><td>'+_this.isEditStrR(r, i)+'</td></tr>'
+          str += '<tr><td>' + _this.isEditStrR(r, i) + '</td></tr>'
         }
       }
       tbody.html(str)
       div.append(table.append(tbody))
       return div
     },
+    objForKeyData: function (obj) {
+      var str = ''
+      // Object.keys(obj).forEach(function (key) {
+      //   if (key == 'value') {
+      //     return;
+      //   }
+      //   str += ' data-' + key + '=' + obj[key]
+      // })
+      for (var i = 0; i < Object.keys(obj).length; i++) {
+        var key = Object.keys(obj)[i]
+        if (key == 'value') {
+          break;
+        }
+        str += ' data-' + key + '=' + obj[key]
+      }
+      return str
+    },
     isEditStrR: function (r, i) {
       var _this = this
       var str = ''
       if (this.edit) {
         var btnstr = ''
-        if (r[i] !== undefined ) {
+        if (r[i] !== undefined) {
           btnstr =
-            '<button class="del del-r" data-rid="' + r[i].rid + '">x</button>'
+            '<button class="del del-r" ' + this.objForKeyData(r[i]) + '>x</button>'
         }
         if (i < _this.noneRow) {
           btnstr = ''
         }
-        str += btnstr +
-        '<input class="row-input" type="text" data-rid="' +
-        r[i].rid +
-        '" value="' +
-        r[i].value +
-        '">'
+        str +=
+          btnstr +
+          '<input class="row-input" type="text" ' +
+          this.objForKeyData(r[i]) +
+          ' value="' +
+          r[i].value +
+          '">'
       } else {
-        str += '<p data-hid="'+r[i].rid +'">' + r[i].value + '</p>'
+        str += '<p ' + this.objForKeyData(r[i]) + '>' + r[i].value + '</p>'
       }
       return str
     },
     isEditStrB: function (item) {
       var str = ''
       if (this.edit) {
-        str += '<textarea class="body-input" type="text" data-rid="' +
-        item.rid +
-        '" data-hid="' +
-        item.hid +
-        '" value="' +
-        item.value +
-        '">' +
-        item.value +
-        '</textarea>'
+        str +=
+          '<textarea class="body-input" type="text" ' +
+          this.objForKeyData(item) +
+          ' value="' +
+          item.value +
+          '">' +
+          item.value +
+          '</textarea>'
       } else {
-        str += '<p class="body-input" type="text" data-rid="' +
-        item.rid +
-        '" data-hid="' +
-        item.hid +
-        '" value="' +
-        item.value +
-        '">' +
-        item.value +
-        '</p>'
+        str +=
+          '<p class="body-input" type="text" ' +
+          this.objForKeyData(item) +
+          ' value="' +
+          item.value +
+          '">' +
+          item.value +
+          '</p>'
       }
       return str
     },
@@ -355,35 +369,35 @@
     changeEvent: function () {
       var _this = this
       $(document).on('change', this.id + ' .head-input', function (e) {
-          var id = $(this).data('hid')
-          for (var i = 0; i < _this.headData.length; i++) {
-            var item = _this.headData[i]
-            if (id == item.hid) {
-              item.value = $(this).val()
-            }
+        var id = $(this).data('hid')
+        for (var i = 0; i < _this.headData.length; i++) {
+          var item = _this.headData[i]
+          if (id == item.hid) {
+            item.value = $(this).val()
           }
-        })
+        }
+      })
       $(document).on('change', this.id + ' .row-input', function (e) {
-          var id = $(this).data('rid')
-          for (var i = 0; i < _this.rowData.length; i++) {
-            var item = _this.rowData[i]
-            if (id == item.rid) {
+        var id = $(this).data('rid')
+        for (var i = 0; i < _this.rowData.length; i++) {
+          var item = _this.rowData[i]
+          if (id == item.rid) {
+            item.value = $(this).val()
+          }
+        }
+      })
+      $(document).on('change', this.id + ' .body-input', function (e) {
+        var hid = $(this).data('hid')
+        var rid = $(this).data('rid')
+        for (var i = 0; i < _this.data.length; i++) {
+          for (var j = 0; j < _this.data[i].length; j++) {
+            var item = _this.data[i][j]
+            if (hid == item.hid && rid == item.rid) {
               item.value = $(this).val()
             }
           }
-        })
-      $(document).on('change', this.id + ' .body-input', function (e) {
-          var hid = $(this).data('hid')
-          var rid = $(this).data('rid')
-          for (var i = 0; i < _this.data.length; i++) {
-            for (var j = 0; j < _this.data[i].length; j++) {
-              var item = _this.data[i][j]
-              if (hid == item.hid && rid == item.rid) {
-                item.value = $(this).val()
-              }
-            }
-          }
-        })
+        }
+      })
     },
   }
 
